@@ -1,15 +1,16 @@
 import asyncio
-from pyrogram import Client
-import config
+import sys
 
-# Add this block to fix the Event Loop error
+# Force event loop creation before any other imports
 try:
-    loop = asyncio.get_event_loop()
+    asyncio.get_event_loop()
 except RuntimeError:
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
 
-# Your existing Client initialization
+from pyrogram import Client
+import config
+
 app = Client(
     "my_bot",
     api_id=config.API_ID,
